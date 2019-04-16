@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="red">
+		<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+		 <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> 
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+	<!--
+		<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:; style-src * 'self' 'unsafe-inline'; media-src *; img-src * 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval';connect-src * 'self'; font-src * 'self' https://fonts.gstatic.com data:;">
+	-->
+		<link rel="shortcut icon" href="img/logo.png"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title>Adidas Nite Joger</title>
+	</head>
+
+	<body>
+		<div class="loading">loading...</div>
+		<div class="preapp">
+			<div class="ventana activa">
+				<div class="boxlogin">
+					<img src="images/logo.png">
+					<div class="titulolog">ENTER YOUR CODE</div>
+					<input type="text" id="usercode" class="inputgen al_100" />
+					<button class="btnBlanco" id="btnIngresar">ENTER</button>
+					<a href="#" class="btnReset">RESEND CODE &gt;</a>
+				</div>
+				<button class="btnBlancoLog" id="btnSincodigo">DO NOT HAVE A CODE &gt;</button>
+			</div>
+		</div>
+		<div class="app">
+			<div class="header">
+				<img src="images/logotop.png">
+			</div>
+			<div class="ventana activa fondohome" id="home1">
+				<div class="fondosc"></div>
+				<div class="boxinicio">
+					<img src="images/userimg.jpg" class="marcofoto">
+					<div class="titHome2">WELCOME</div>
+					<div class="titHome3" id="nombreperfil"></div>
+					<div class="titHome" id="subremember"></div>
+				</div>
+			</div>
+			<div class="ventana activa fondohome" id="home2">
+				<div class="fondosc"></div>
+				<div class="boxinicio">
+					<div class="titHome">WELCOME<br>Do not miss nothing</div>
+					<div class="titHome2" id="homenombeve"></div>
+					<div class="titHome" id="homenombeve2"></div>
+				</div>
+			</div>
+			<div class="footer">
+				<button class="botonfoo"><img src="images/influencers.png"></button>
+				<button class="botonfoo"><img src="images/eventos.png"></button>
+				<button class="botonfoo"><img src="images/turismo.png"></button>
+				<button class="botonfoo"><img src="images/guideline.png"></button>
+				<button class="botonfoo"><img src="images/perfil.png"></button>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="alerta" tabindex="-1" role="dialog" aria-labelledby="alertat">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header titulomodal">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="alertatitle" data-textlang="alert">Alert</h4>
+					</div>
+					<div class="modal-body">
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript">
+			window.onerror = function(message, url, lineNumber) {
+				//~ alert("Error: "+message+" in "+url+" at line "+lineNumber);
+			}
+			document.addEventListener('deviceready', function () {
+				app.initialize();
+			}, false);
+		</script>
+		<script type="text/javascript">
+			app.initialize();
+		</script>
+	</body>
+
+</html>

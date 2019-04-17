@@ -63,6 +63,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.adidas.nitejoger"
+        },
+        "cordova-plugin-keyboard": {
+            "PACKAGE_NAME": "com.adidas.nitejoger"
         }
     },
     "dependent_plugins": {

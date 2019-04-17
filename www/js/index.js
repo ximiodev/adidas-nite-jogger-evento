@@ -4,6 +4,7 @@ var userdata = '';
 var apiURL = "http://newcyclelabs.com.ar/addidasnitejogger/appConnector.php";
 var datos_eventos;
 var data_path = '';
+var ventHome = "home2";
 var app = {
     initialize: function() {
         this.bindEvents();
@@ -31,6 +32,7 @@ var app = {
 					datos_eventos = data.datos;
 					$('.loading').remove();
 					localStorage["datos_eventos"] = datos_eventos;
+					app.cargarDatos();
 				},
 				error : function(xhr, ajaxOptions, thrownError) {
 					$('.loading').remove();
@@ -42,14 +44,189 @@ var app = {
 			$('.loading').remove();
 		}
 	},
+    cargarDatos: function() {
+		//influencers
+		var cant = datos_eventos["influencers"].length;
+		var influ = datos_eventos["influencers"];
+		var block = '';
+		$('.influcont').html('');
+		for(var i=0;i<cant;i++) {
+			block = ''+
+					'	<div class="col-xs-6 boxInfS" onclick="app.ponerInfoInf('+i+')">'+
+					'		<div class="fotoInflu" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
+					'		<div class="nombreInflu">'+influ[i].nombre_apellido+'</div>'+
+					'		<div class="redInflu">'+influ[i].instagram+'</div>'+
+					'		<div class="redInflu">'+influ[i].twitter+'</div>'+
+					'	</div>';
+			$('.influcont').append(block);
+		}
+		
+		//eventos
+		var cant = datos_eventos["eventos"].length;
+		var event = datos_eventos["eventos"];
+		var block = '';
+		var dia = 0;
+		$('.eventcont0').html('');
+		$('.eventcont1').html('');
+		for(var i=0;i<cant;i++) {
+			block = ''+
+					'<div class="row bloqueeve">'+
+					'	<div class="col-xs-6">'+
+					'		<div class="horaeve">'+event[i].hora+'</div>'+
+					'	</div>'+
+					'	<div class="col-xs-6 sepadadorrig">'+
+					'		<div class="tituloeve">'+event[i].titulo+'</div>'+
+					'		<div class="lugareve">'+event[i].lugar+'</div>'+
+					'		<div class="btnVermas" onclick="app.ponerInfoEve('+event[i].dia+','+i+')">READ MORE &gt;</div>'+
+					'	</div>'+
+					'</div>';
+			$('.eventcont'+event[i].dia+'').append(block);
+		}
+		
+		
+		//turismo
+		var cant = datos_eventos["turismo"].length;
+		var turi = datos_eventos["turismo"];
+		var block = '';
+		$('.turismocont').html('');
+		for(var i=0;i<cant;i++) {
+			block = ''+
+					'	<div class="col-xs-12 boxTurS" onclick="app.ponerInfoTur('+i+')" style="background-image: url('+turi[i].baseurl+turi[i].imagen_header+');">'+
+					'		<table>'+
+					'		<tr>'+
+					'		<td>'+
+					'		<div class="tituTuri">'+turi[i].nombre_lugar+'</div>'+
+					'		<div class="descTuri">'+turi[i].descripcion_breve+'</div>'+
+					'		</td>'+
+					'		</tr>'+
+					'		</table>'+
+					'	</div>';
+			$('.turismocont').append(block);
+		}
+		
+		
+		//guidelines
+		var cant = datos_eventos["guidelines"].length;
+		var turi = datos_eventos["guidelines"];
+		var block = '';
+		$('.guidelinescont').html('');
+		for(var i=0;i<cant;i++) {
+			block = '<img class="imgguide" src="'+turi[i].baseurl+turi[i].imagen+'">';
+			$('.guidelinescont').append(block);
+		}
+		
+	},
+    volver: function(donde) {
+		$('.ventana').removeClass('activa');
+		$(donde).addClass('activa');
+	},
+    ponerInfoEve: function(dia,infid) {
+		$('.ventana').removeClass('activa');
+		var event = datos_eventos["eventos"];
+		var block = '';
+		$('.eventcontInt').html('');
+		var i = infid;
+		var imagen = (event[i].imagen!='')?'<img src="'+influ[i].baseurl+event[i].imagen+'" class="imgEve">':'';
+		block = ''+
+				'		<div class="col-xs-12">'+
+				'			<div class="tituloEvento">'+event[i].titulo+'</div>'+
+				'			<div class="lugarEvento">'+event[i].hora+' | '+event[i].lugar+'</div>'+
+				'			<div class="descrEvento">'+event[i].descripcion+'</div>'+
+				imagen+
+				'		</div>';
+		$('.eventcontInt').append(block);
+		$('#eventosInt').addClass('activa');
+	},
+    ponerInfoInf: function(infid) {
+		$('.ventana').removeClass('activa');
+		var influ = datos_eventos["influencers"];
+		var block = '';
+		$('.influcontInt').html('');
+		var i = infid;
+		block = ''+
+				'		<div class="col-xs-12">'+
+				'			<img class="fotoInfluBig" src="'+influ[i].baseurl+influ[i].imagen_header+'">'+
+				'			<div class="nombreInflu">'+influ[i].nombre_apellido+'</div>'+
+				'			<div class="redInflu" id="instagram">'+influ[i].instagram+'</div>'+
+				'			<div class="redInflu" id="twitter">'+influ[i].twitter+'</div>'+
+				'			<div class="bioInflu">'+influ[i].bio+'</div>'+
+				'			<img src="'+influ[i].baseurl+influ[i].imagen_botom+'" class="imgInflu">'+
+				'		</div>';
+		$('.influcontInt').append(block);
+		$('#influencersInt').addClass('activa');
+	},
+    ponerInfoTur: function(turid) {
+		$('.ventana').removeClass('activa');
+		var turi = datos_eventos["turismo"];
+		var block = '';
+		$('.turismocontInt').html('');
+		var i = turid;
+		block = ''+
+				'	<div class="col-xs-12 boxTurS" style="background-image: url('+turi[i].baseurl+turi[i].imagen_header+');">'+
+				'		<table>'+
+				'		<tr>'+
+				'		<td>'+
+				'		<div class="tituTuri">'+turi[i].nombre_lugar+'</div>'+
+				'		<div class="descTuri">'+turi[i].descripcion_breve+'</div>'+
+				'		</td>'+
+				'		</tr>'+
+				'		</table>'+
+				'	</div>'+
+				'	<div class="col-xs-12">'+
+				'		<div class="descturism">'+turi[i].descripcion+'</div>'+
+				'		<a href="'+turi[i].linkmap+'" target="_blank" class="btnMap">View on map</a>'+
+				'	</div>';
+		$('.turismocontInt').append(block);
+		$('#turismoInt').addClass('activa');
+	},
     ponerInfoUser: function(tipo=1) {
 		if(tipo==1) {
 			$('#homenombeve').html(datos_eventos.infohome.homenombeve);
 			$('#homenombeve2').html(datos_eventos.infohome.homenombeve2);
 		} else {
-			$('.marcofoto').attr('src', userdata.baseurl+userdata.foto);
+			var foto = (userdata.foto!="")?userdata.baseurl+userdata.foto:'images/userimg.jpg'
+			$('.marcofoto').attr('src', foto);
 			$('#nombreperfil').html(userdata.nombre);
 			$('#subremember').html(userdata.subremember);
+			$('#nombreperfil2').html(userdata.nombre);
+			$('#subremember2').html(userdata.subremember);
+			if(userdata.vuelo_vuelta=='') {
+				$('#vuelovuelta').hide();
+			}
+			if(userdata.vuelo_salida_ida=='') {
+				$('#vueloida').hide();
+			}
+			$('#vueloida .horasalida').html(userdata.hora_de_salida_ida);
+			$('#vueloida .horallegada').html(userdata.hora_de_llegada_ida);
+			$('#vueloida .diasalida').html(userdata.fecha_de_salida_ida);
+			//~ $('#vueloida .diallegada').html(userdata.fecha_de_llegada_ida);
+			$('#vueloida .codigoreserva').html(userdata.vuelo_salida_ida);
+			$('#vueloida .asientoempresa').html(userdata.empresa_salida_ida+' | '+userdata.asiento_ida);
+			
+			$('#vuelovuelta .horasalida').html(userdata.hora_de_salida_vuelta);
+			$('#vuelovuelta .horallegada').html(userdata.hora_de_llegada_vuelta);
+			$('#vuelovuelta .diasalida').html(userdata.fecha_de_regreso_vuelta);
+			//~ $('#vuelovuelta .diallegada').html(userdata.fecha_de_llegada_vuelta);
+			$('#vuelovuelta .codigoreserva').html(userdata.vuelo_vuelta);
+			$('#vuelovuelta .asientoempresa').html(userdata.empresa_vuelta+' | '+userdata.asiento_vuelta);
+			
+			
+			$('.nombrehotel').html(userdata.hotel);
+			$('.habitacion').html(userdata.habitacion);
+			$('.checkin').html(userdata.hora_checkin);
+			$('.checkout').html(userdata.hora_checkout);
+			
+			$('.nombrehotel').html(userdata.hotel);
+			$('.habitacion').html(userdata.habitacion);
+			$('.checkin').html('<b>CHECKIN</b>'+userdata.hora_checkin);
+			$('.checkout').html('<b>CHECKOUT</b>'+userdata.hora_checkout);
+			
+			
+			$('#telsudame').html('<b>SOUTH AMERICA</b><br>'+userdata.numero_asistencia_viajero);
+			$('#telnort').html('<b>NORT AMERICA</b><br>'+userdata.numero_asistencia_viajero_norte);
+			$('#telconta').html('<b>'+userdata.nombre_contacto+'</b><br>'+userdata.telefono_de_contacto);
+			
+			
 		}
 	},
     ponerHome: function() {
@@ -79,6 +256,7 @@ $(document).ready(function() {
 	$('#btnSincodigo').click(function(e) {
 		e.preventDefault();
 		$('#home1').removeClass('activa');
+		$('.perfilcont').html('<div class="textwarn">You must have a code to view this section.</div>');
 		app.ponerInfoUser(1);
 		app.ponerHome();
 	});
@@ -140,6 +318,7 @@ $(document).ready(function() {
 					if(data.res) {
 						userdata = data.datos;
 						localStorage["datos"] = userdata;
+						ventHome = "home1";
 						$('#home2').removeClass('activa');
 						app.ponerInfoUser(2);
 						app.ponerHome();
@@ -155,6 +334,109 @@ $(document).ready(function() {
 			app.alerta('You must need to enter your code.', 'Access with code');
 		}
 	});
+	
+	$('#btnBuscarInf').click(function(e) {
+		e.preventDefault();
+		var vts = $('#search').val();
+		var busc = true;
+		if(vts=='') {
+			busc = false;
+		}
+		var cant = datos_eventos["influencers"].length;
+		var influ = datos_eventos["influencers"];
+		var block = '';
+		$('.influcont').html('');
+		for(var i=0;i<cant;i++) {
+			if(buscar(influ[i].nombre_apellido, vts) || buscar(influ[i].tags_filtro, vts) || !busc) {
+				block = ''+
+						'	<div class="col-xs-6 boxInfS">'+
+						'		<div class="fotoInflu" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
+						'		<div class="nombreInflu">'+influ[i].nombre_apellido+'</div>'+
+						'		<div class="redInflu">'+influ[i].instagram+'</div>'+
+						'		<div class="redInflu">'+influ[i].twitter+'</div>'+
+						'	</div>';
+				$('.influcont').append(block);
+			}
+		}
+	});
+	
+	$('#search').keypress(function(e) {
+		if(e.which == 13) {
+			$('#btnBuscarInf').click();
+			$('#search').focusout();
+			$('#search').blur();
+			+$(':focus').blur();
+			Keyboard.hide();
+		}
+	});
+	
+	$('.header img').click(function(e) {
+		e.preventDefault();
+		$('#btnInfluencers img').attr('src', 'images/influencers.png');
+		$('#btnEventos img').attr('src', 'images/eventos.png');
+		$('#btnTurismo img').attr('src', 'images/turismo.png');
+		$('#btnGuideline img').attr('src', 'images/guideline.png');
+		$('#btnPerfil img').attr('src', 'images/perfil.png');
+		$('.ventana').removeClass('activa');
+		$('#'+ventHome).addClass('activa');
+	});
+	
+	$('.esdia1').click(function(e) {
+		e.preventDefault();
+		$('.eventcont1').removeClass('hidden');
+		$('.eventcont0').addClass('hidden');
+	});
+	
+	$('.esdia0').click(function(e) {
+		e.preventDefault();
+		$('.eventcont0').removeClass('hidden');
+		$('.eventcont1').addClass('hidden');
+	});
+	
+	
+	//menu
+	
+	$('#btnInfluencers').click(function(e) {
+		e.preventDefault();
+		$('#btnInfluencers img').attr('src', 'images/influencers_over.png');
+		$('.ventana').removeClass('activa');
+		$('#influencers').addClass('activa');
+	});
+	
+	$('#btnEventos').click(function(e) {
+		e.preventDefault();
+		$('#btnEventos img').attr('src', 'images/eventos_over.png');
+		$('.ventana').removeClass('activa');
+		$('#eventos').addClass('activa');
+	});
+	
+	$('#btnTurismo').click(function(e) {
+		e.preventDefault();
+		$('#btnTurismo img').attr('src', 'images/turismo_over.png');
+		$('.ventana').removeClass('activa');
+		$('#turismo').addClass('activa');
+	});
+	
+	$('#btnTurismo').click(function(e) {
+		e.preventDefault();
+		$('#btnTurismo img').attr('src', 'images/turismo_over.png');
+		$('.ventana').removeClass('activa');
+		$('#turismo').addClass('activa');
+	});
+	
+	$('#btnGuideline').click(function(e) {
+		e.preventDefault();
+		$('#btnGuideline img').attr('src', 'images/guideline_over.png');
+		$('.ventana').removeClass('activa');
+		$('#guidelines').addClass('activa');
+	});
+	
+	$('#btnPerfil').click(function(e) {
+		e.preventDefault();
+		$('#btnPerfil img').attr('src', 'images/perfil_over.png');
+		$('.ventana').removeClass('activa');
+		$('#perfil').addClass('activa');
+	});
 });
 function setFilePath() {
     if(detectAndroid()) {   
@@ -164,6 +446,11 @@ function setFilePath() {
         data_path = "res//db//";
         //4 apache//iOS/desktop
     }
+}
+
+function buscar(origen, busc) {
+	var val = origen.toLowerCase().search(busc.toLowerCase());
+	return (val!=-1);
 }
 
 function loadJSON(url) {

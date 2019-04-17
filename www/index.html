@@ -2,8 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+<!--
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="msapplication-tap-highlight" content="no" />
+-->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -55,12 +57,154 @@
 					<div class="titHome" id="homenombeve2"></div>
 				</div>
 			</div>
+			<div class="ventana fondohome" id="influencers">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="searchbox">
+						<input type="text" id="search">
+						<img src="images/lupa.png" id="btnBuscarInf">
+					</div>
+					<div class="influcont row">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="influencersInt">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="btnBack" onclick="app.volver('#influencers');">&lt; BACK</div>
+					<div class="influcontInt row">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="eventos">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="btnDia esdia0 activo">
+								DAY 1
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="btnDia esdia1">
+								DAY 2
+							</div>
+						</div>
+					</div>
+					<div class="eventcont0">
+					</div>
+					<div class="eventcont1 hidden">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="eventosInt">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="btnBack" onclick="app.volver('#eventos');">&lt; BACK</div>
+					<div class="eventcontInt row">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="turismo">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="turismocont row">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="turismoInt">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="btnBack" onclick="app.volver('#turismo');">&lt; BACK</div>
+					<div class="turismocontInt row">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="guidelines">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="guidelinescont row">
+					</div>
+				</div>
+			</div>
+			<div class="ventana fondohome" id="perfil">
+				<div class="fondosc"></div>
+				<div class="boxContInt">
+					<div class="perfilcont row">
+						<img src="images/userimg.jpg" class="marcofoto">
+						<div class="titHome3" id="nombreperfil2"></div>
+						<div class="titHome" id="subremember2"></div>
+					</div>
+					<div class="bloqueperfil" id="vueloida">
+						<div class="titAvion">DEPARURE</div>
+						<div class="spearadormini"></div>
+						<table>
+							<tr>
+								<td class="horasalida"></td>
+								<td><img src="images/simborosa.png"></td>
+								<td class="horallegada"></td>
+							</tr>
+							<tr>
+								<td class="diasalida"></td>
+								<td></td>
+								<td class="diallegada"></td>
+							</tr>
+						</table>
+						<div class="codigoreserva"></div>
+						<div class="asientoempresa"></div>
+					</div>
+					<div class="bloqueperfil" id="vuelovuelta">
+						<div class="titAvion">RETURN</div>
+						<div class="spearadormini"></div>
+						<table>
+							<tr>
+								<td class="horasalida"></td>
+								<td><img src="images/simborosa.png"></td>
+								<td class="horallegada"></td>
+							</tr>
+							<tr>
+								<td class="diasalida"></td>
+								<td></td>
+								<td class="diallegada"></td>
+							</tr>
+						</table>
+						<div class="codigoreserva"></div>
+						<div class="asientoempresa"></div>
+					</div>
+					<div class="bloqueperfil" id="hotel">
+						<div class="titHotel">HOTEL</div>
+						<div class="spearadormini"></div>
+						<div class="nombrehotel"></div>
+						<div class="habitacion"></div>
+						<div class="checkin"></div>
+						<div class="checkout"></div>
+						<div class="clear"></div>
+					</div>
+					<div class="bloqueperfil" id="asistencia">
+						<div class="coluno">
+							<div class="titCard">ASISTANCE</div>
+							<div class="spearadormini"></div>
+							<div class="bloquetel" id="telsudame">
+							</div>
+							<div class="bloquetel" id="telnort">
+							</div>
+						</div>
+						<div class="coldos">
+							<div class="titTel">TRAVELS</div>
+							<div class="spearadormini"></div>
+							<div class="bloquetel" id="telconta">
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
 			<div class="footer">
-				<button class="botonfoo"><img src="images/influencers.png"></button>
-				<button class="botonfoo"><img src="images/eventos.png"></button>
-				<button class="botonfoo"><img src="images/turismo.png"></button>
-				<button class="botonfoo"><img src="images/guideline.png"></button>
-				<button class="botonfoo"><img src="images/perfil.png"></button>
+				<button class="botonfoo" id="btnInfluencers"><img src="images/influencers.png"></button>
+				<button class="botonfoo" id="btnEventos"><img src="images/eventos.png"></button>
+				<button class="botonfoo" id="btnTurismo"><img src="images/turismo.png"></button>
+				<button class="botonfoo" id="btnGuideline"><img src="images/guideline.png"></button>
+				<button class="botonfoo" id="btnPerfil"><img src="images/perfil.png"></button>
 			</div>
 		</div>
 		<!-- Modal -->

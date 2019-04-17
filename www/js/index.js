@@ -56,9 +56,8 @@ var app = {
 			block = ''+
 					'	<div class="col-xs-6 boxInfS">'+
 					'		<div class="fotoInflu" onclick="app.ponerInfoInf('+i+')" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
-					'		<div class="nombreInflu" onclick="app.ponerInfoInf('+i+')">'+influ[i].nombre_apellido+'</div>'+
-					'		<a href="https://www.instagram.com/'+influ[i].instagram+'" target="_blank" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-					'		<a href="https://www.twitter.com/'+influ[i].twitter+'" target="_blank" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+					'		<a href="https://www.instagram.com/'+influ[i].instagram+'" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
+					'		<a href="https://www.twitter.com/'+influ[i].twitter+'" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 					'	</div>';
 			$('.influcont').append(block);
 		}
@@ -150,8 +149,8 @@ var app = {
 				'		<div class="col-xs-12">'+
 				'			<img class="fotoInfluBig" src="'+influ[i].baseurl+influ[i].imagen_header+'">'+
 				'			<div class="nombreInflu">'+influ[i].nombre_apellido+'</div>'+
-				'			<a href="https://www.instagram.com/'+influ[i].instagram+'" id="instagram" target="_blank" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-				'			<a href="https://www.twitter.com/'+influ[i].twitter+'" id="twitter" target="_blank" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+				'			<a href="https://www.instagram.com/'+influ[i].instagram+'" id="instagram" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
+				'			<a href="https://www.twitter.com/'+influ[i].twitter+'" id="twitter" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 				'			<div class="bioInflu">'+influ[i].bio+'</div>'+
 				'			<img src="'+influ[i].baseurl+influ[i].imagen_botom+'" class="imgInflu">'+
 				'		</div>';
@@ -360,8 +359,8 @@ $(document).ready(function() {
 						'	<div class="col-xs-6 boxInfS">'+
 						'		<div class="linktoinfu fotoInflu" onclick="app.ponerInfoInf('+i+')" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
 						'		<div class="linktoinfu nombreInflu" onclick="app.ponerInfoInf('+i+')">'+influ[i].nombre_apellido+'</div>'+
-						'		<a href="https://www.instagram.com/'+influ[i].instagram+'" target="_blank" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-						'		<a href="https://www.twitter.com/'+influ[i].twitter+'" target="_blank" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+						'		<a href="https://www.instagram.com/'+influ[i].instagram+'" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
+						'		<a href="https://www.twitter.com/'+influ[i].twitter+'" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 						'	</div>';
 				$('.influcont').append(block);
 			}

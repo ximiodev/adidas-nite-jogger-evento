@@ -1,6 +1,7 @@
 var isonline = false;
 var isOffline = true;
 var enviando = false;
+secTipo = 0;
 var userdata = '';
 var apiURL = "http://newcyclelabs.com.ar/addidasnitejogger/appConnector.php";
 var datos_eventos;
@@ -16,36 +17,49 @@ var app = {
     onDeviceReady: function() {
     },
     iniciar: function() {
+		document.addEventListener("backbutton", function(e){
+			if(secTipo==0) {
+				//navigator.app.exitApp();
+			}
+			if(secTipo==6) {
+				$('#btnTurismo').click();
+			}
+			if(secTipo==7) {
+				$('#btnInfluencers').click();
+			}
+			if(secTipo==8) {
+				$('#btnEventos').click();
+			}
+			if(secTipo==1 || secTipo==2 || secTipo==3 || secTipo==4 || secTipo==5 ) {
+				$('.header img').click();
+			}
+		}, false);
 		localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
 		datos_eventos = localStorage["datos_eventos"];
-		if(!isOffline) {
-			var datos = {
-				'action':'getData'
-			}
-			$.ajax({
-				type: 'POST',
-				data: datos,
-				dataType: 'json',
-				url: apiURL,
-				success: function (data) {
-					datos_eventos = data.datos;
-					$('.loading').remove();
-					localStorage["datos_eventos"] = datos_eventos;
-					if(localStorage["codigo"]!=undefined) {
-						app.cargarcodigo(localStorage["codigo"]);
-					} else {
-						app.cargarDatos();
-					}
-				},
-				error : function(xhr, ajaxOptions, thrownError) {
-					$('.loading').remove();
-					enviando = false;
-					app.alerta('An error ocurred, try again latar, to update data.', 'Retriving data');
-				}
-			});
-		} else {
-			$('.loading').remove();
+		var datos = {
+			'action':'getData'
 		}
+		$.ajax({
+			type: 'POST',
+			data: datos,
+			dataType: 'json',
+			url: apiURL,
+			success: function (data) {
+				datos_eventos = data.datos;
+				$('.loading').remove();
+				localStorage["datos_eventos"] = datos_eventos;
+				if(localStorage["codigo"]!=undefined) {
+					app.cargarcodigo(localStorage["codigo"]);
+				} else {
+					app.cargarDatos();
+				}
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				$('.loading').remove();
+				enviando = false;
+				app.alerta('An error ocurred, try again latar, to update data.', 'Retriving data');
+			}
+		});
 	},
     cargarDatos: function() {
 		//influencers
@@ -124,6 +138,7 @@ var app = {
 		$(donde).addClass('activa');
 	},
     ponerInfoEve: function(dia,infid) {
+		secTipo = 8;
 		$('.ventana').removeClass('activa');
 		var event = datos_eventos["eventos"];
 		var block = '';
@@ -141,6 +156,7 @@ var app = {
 		$('#eventosInt').addClass('activa');
 	},
     ponerInfoInf: function(infid) {
+		secTipo = 7;
 		$('.ventana').removeClass('activa');
 		var influ = datos_eventos["influencers"];
 		var block = '';
@@ -159,6 +175,7 @@ var app = {
 		$('#influencersInt').addClass('activa');
 	},
     ponerInfoTur: function(turid) {
+		secTipo = 6;
 		$('.ventana').removeClass('activa');
 		var turi = datos_eventos["turismo"];
 		var block = '';
@@ -284,8 +301,6 @@ var app = {
 };
 
 $(document).ready(function() {
-	isonline = window.navigator.onLine;
-	isOffline = 'onLine' in navigator && !navigator.onLine;
 	app.iniciar();
 	$('#btnSincodigo').click(function(e) {
 		e.preventDefault();
@@ -388,6 +403,7 @@ $(document).ready(function() {
 		$('#btnPerfil img').attr('src', 'images/perfil.png');
 		$('.ventana').removeClass('activa');
 		$('#'+ventHome).addClass('activa');
+		secTipo = 0;
 	});
 	
 	$('.esdia1').click(function(e) {
@@ -415,6 +431,7 @@ $(document).ready(function() {
 		$('#btnInfluencers img').attr('src', 'images/influencers_over.png');
 		$('.ventana').removeClass('activa');
 		$('#influencers').addClass('activa');
+		secTipo = 1;
 	});
 	
 	$('#btnEventos').click(function(e) {
@@ -427,6 +444,7 @@ $(document).ready(function() {
 		$('#btnEventos img').attr('src', 'images/eventos_over.png');
 		$('.ventana').removeClass('activa');
 		$('#eventos').addClass('activa');
+		secTipo = 2;
 	});
 	
 	$('#btnTurismo').click(function(e) {
@@ -439,18 +457,7 @@ $(document).ready(function() {
 		$('#btnTurismo img').attr('src', 'images/turismo_over.png');
 		$('.ventana').removeClass('activa');
 		$('#turismo').addClass('activa');
-	});
-	
-	$('#btnTurismo').click(function(e) {
-		e.preventDefault();
-		$('#btnInfluencers img').attr('src', 'images/influencers.png');
-		$('#btnEventos img').attr('src', 'images/eventos.png');
-		$('#btnTurismo img').attr('src', 'images/turismo.png');
-		$('#btnGuideline img').attr('src', 'images/guideline.png');
-		$('#btnPerfil img').attr('src', 'images/perfil.png');
-		$('#btnTurismo img').attr('src', 'images/turismo_over.png');
-		$('.ventana').removeClass('activa');
-		$('#turismo').addClass('activa');
+		secTipo = 3;
 	});
 	
 	$('#btnGuideline').click(function(e) {
@@ -463,6 +470,7 @@ $(document).ready(function() {
 		$('#btnGuideline img').attr('src', 'images/guideline_over.png');
 		$('.ventana').removeClass('activa');
 		$('#guidelines').addClass('activa');
+		secTipo = 4;
 	});
 	
 	$('#btnPerfil').click(function(e) {
@@ -475,6 +483,7 @@ $(document).ready(function() {
 		$('#btnPerfil img').attr('src', 'images/perfil_over.png');
 		$('.ventana').removeClass('activa');
 		$('#perfil').addClass('activa');
+		secTipo = 5;
 	});
 });
 function setFilePath() {

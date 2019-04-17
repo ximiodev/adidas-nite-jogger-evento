@@ -1,4 +1,5 @@
 var isonline = false;
+var isOffline = true;
 var enviando = false;
 var userdata = '';
 var apiURL = "http://newcyclelabs.com.ar/addidasnitejogger/appConnector.php";
@@ -17,8 +18,7 @@ var app = {
     iniciar: function() {
 		localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
 		datos_eventos = localStorage["datos_eventos"];
-		if(isonline) {
-			enviando = true;
+		if(!isOffline) {
 			var datos = {
 				'action':'getData'
 			}
@@ -28,11 +28,14 @@ var app = {
 				dataType: 'json',
 				url: apiURL,
 				success: function (data) {
-					enviando = false;
 					datos_eventos = data.datos;
 					$('.loading').remove();
 					localStorage["datos_eventos"] = datos_eventos;
-					app.cargarDatos();
+					if(localStorage["codigo"]!=undefined) {
+						app.cargarcodigo(localStorage["codigo"]);
+					} else {
+						app.cargarDatos();
+					}
 				},
 				error : function(xhr, ajaxOptions, thrownError) {
 					$('.loading').remove();
@@ -54,9 +57,8 @@ var app = {
 			block = ''+
 					'	<div class="col-xs-6 boxInfS">'+
 					'		<div class="fotoInflu" onclick="app.ponerInfoInf('+i+')" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
-					'		<div class="nombreInflu" onclick="app.ponerInfoInf('+i+')">'+influ[i].nombre_apellido+'</div>'+
-					'		<a href="https://www.instagram.com/'+influ[i].instagram+'" target="_blank" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-					'		<a href="https://www.twitter.com/'+influ[i].twitter+'" target="_blank" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+					'		<a href="https://www.instagram.com/'+influ[i].instagram+'" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
+					'		<a href="https://www.twitter.com/'+influ[i].twitter+'" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 					'	</div>';
 			$('.influcont').append(block);
 		}
@@ -148,8 +150,8 @@ var app = {
 				'		<div class="col-xs-12">'+
 				'			<img class="fotoInfluBig" src="'+influ[i].baseurl+influ[i].imagen_header+'">'+
 				'			<div class="nombreInflu">'+influ[i].nombre_apellido+'</div>'+
-				'			<a href="https://www.instagram.com/'+influ[i].instagram+'" id="instagram" target="_blank" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-				'			<a href="https://www.twitter.com/'+influ[i].twitter+'" id="twitter" target="_blank" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+				'			<a href="https://www.instagram.com/'+influ[i].instagram+'" id="instagram" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
+				'			<a href="https://www.twitter.com/'+influ[i].twitter+'" id="twitter" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 				'			<div class="bioInflu">'+influ[i].bio+'</div>'+
 				'			<img src="'+influ[i].baseurl+influ[i].imagen_botom+'" class="imgInflu">'+
 				'		</div>';
@@ -230,6 +232,36 @@ var app = {
 			
 		}
 	},
+    cargarcodigo: function(codigo) {
+		enviando = true;
+		var datos = {
+			'action':'checkcode',
+			'usercode': codigo
+		}
+		$.ajax({
+			type: 'POST',
+			data: datos,
+			dataType: 'json',
+			url: apiURL,
+			success: function (data) {
+				enviando = false;
+				if(data.res) {
+					userdata = data.datos;
+					localStorage["datos"] = userdata;
+					localStorage["codigo"] = codigo;
+					ventHome = "home1";
+					$('#home2').removeClass('activa');
+					app.ponerInfoUser(2);
+					app.ponerHome();
+				} else {
+					app.alerta("The code that you enter is invalid.", 'Access with code');
+				}
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				app.alerta("Can't connect to server. Try again later.", 'Access with code');
+			}
+		});
+	},
     ponerHome: function() {
 		$('.preapp').animate({
 			'top': '100vh'
@@ -253,6 +285,7 @@ var app = {
 
 $(document).ready(function() {
 	isonline = window.navigator.onLine;
+	isOffline = 'onLine' in navigator && !navigator.onLine;
 	app.iniciar();
 	$('#btnSincodigo').click(function(e) {
 		e.preventDefault();
@@ -305,33 +338,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var tempcode = $('#usercode').val();
 		if(tempcode!='') {
-			enviando = true;
-			var datos = {
-				'action':'checkcode',
-				'usercode': tempcode
-			}
-			$.ajax({
-				type: 'POST',
-				data: datos,
-				dataType: 'json',
-				url: apiURL,
-				success: function (data) {
-					enviando = false;
-					if(data.res) {
-						userdata = data.datos;
-						localStorage["datos"] = userdata;
-						ventHome = "home1";
-						$('#home2').removeClass('activa');
-						app.ponerInfoUser(2);
-						app.ponerHome();
-					} else {
-						app.alerta("The code that you enter is invalid.", 'Access with code');
-					}
-				},
-				error : function(xhr, ajaxOptions, thrownError) {
-					app.alerta("Can't connect to server. Try again later.", 'Access with code');
-				}
-			});
+			app.cargarcodigo(tempcode);
 		} else {
 			app.alerta('You must need to enter your code.', 'Access with code');
 		}
@@ -354,8 +361,8 @@ $(document).ready(function() {
 						'	<div class="col-xs-6 boxInfS">'+
 						'		<div class="linktoinfu fotoInflu" onclick="app.ponerInfoInf('+i+')" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
 						'		<div class="linktoinfu nombreInflu" onclick="app.ponerInfoInf('+i+')">'+influ[i].nombre_apellido+'</div>'+
-						'		<a href="https://www.instagram.com/'+influ[i].instagram+'" target="_blank" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-						'		<a href="https://www.twitter.com/'+influ[i].twitter+'" target="_blank" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+						'		<a href="https://www.instagram.com/'+influ[i].instagram+'" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
+						'		<a href="https://www.twitter.com/'+influ[i].twitter+'" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 						'	</div>';
 				$('.influcont').append(block);
 			}

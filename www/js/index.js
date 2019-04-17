@@ -1,4 +1,5 @@
 var isonline = false;
+var isOffline = true;
 var enviando = false;
 var userdata = '';
 var apiURL = "http://newcyclelabs.com.ar/addidasnitejogger/appConnector.php";
@@ -17,7 +18,7 @@ var app = {
     iniciar: function() {
 		localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
 		datos_eventos = localStorage["datos_eventos"];
-		if(isonline) {
+		if(!isOffline) {
 			var datos = {
 				'action':'getData'
 			}
@@ -284,6 +285,7 @@ var app = {
 
 $(document).ready(function() {
 	isonline = window.navigator.onLine;
+	isOffline = 'onLine' in navigator && !navigator.onLine;
 	app.iniciar();
 	$('#btnSincodigo').click(function(e) {
 		e.preventDefault();

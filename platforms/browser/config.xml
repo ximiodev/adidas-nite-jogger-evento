@@ -14,6 +14,7 @@
         Ximiodev
     </author>
     <content src="index.html" />
+    <icon src="www/res/icon/ios/icon-small@2x.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -22,9 +23,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="23" />
     <preference name="android-targetSdkVersion" value="27" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="blacktranslucent" />
 </widget>

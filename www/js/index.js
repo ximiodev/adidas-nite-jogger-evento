@@ -302,6 +302,8 @@ var app = {
 };
 
 $(document).ready(function() {
+	alert("HOLA");
+	app.initialize();
 	app.iniciar();
 	$('#btnSincodigo').click(function(e) {
 		e.preventDefault();
@@ -487,6 +489,10 @@ $(document).ready(function() {
 		secTipo = 5;
 	});
 });
+
+
+	app.initialize();
+	app.iniciar();
 function setFilePath() {
     if(detectAndroid()) {   
         data_path = "file:///android_asset/www/res/db/";

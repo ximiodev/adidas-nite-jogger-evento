@@ -18,7 +18,6 @@ var app = {
 		localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
 		datos_eventos = localStorage["datos_eventos"];
 		if(isonline) {
-			enviando = true;
 			var datos = {
 				'action':'getData'
 			}
@@ -28,7 +27,6 @@ var app = {
 				dataType: 'json',
 				url: apiURL,
 				success: function (data) {
-					enviando = false;
 					datos_eventos = data.datos;
 					$('.loading').remove();
 					localStorage["datos_eventos"] = datos_eventos;

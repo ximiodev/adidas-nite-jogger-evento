@@ -520,6 +520,7 @@ a.redInflu {
 }
 
 .descTuri {
+    font-family: 'AdihausDINRegular';
     font-size: 14px;
     line-height: 14px;
     text-align: left;
@@ -542,7 +543,6 @@ a.redInflu {
 }
 
 .descturism {
-    font-family: 'AdihausDINRegular';
     font-size: 14px;
     line-height: 14px;
     text-align: left;

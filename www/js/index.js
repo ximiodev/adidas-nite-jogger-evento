@@ -32,7 +32,11 @@ var app = {
 					datos_eventos = data.datos;
 					$('.loading').remove();
 					localStorage["datos_eventos"] = datos_eventos;
-					app.cargarDatos();
+					if(localStorage["codigo"]!=undefined) {
+						app.cargarcodigo(localStorage["codigo"]);
+					} else {
+						app.cargarDatos();
+					}
 				},
 				error : function(xhr, ajaxOptions, thrownError) {
 					$('.loading').remove();
@@ -230,6 +234,36 @@ var app = {
 			
 		}
 	},
+    cargarcodigo: function(codigo) {
+		enviando = true;
+		var datos = {
+			'action':'checkcode',
+			'usercode': codigo
+		}
+		$.ajax({
+			type: 'POST',
+			data: datos,
+			dataType: 'json',
+			url: apiURL,
+			success: function (data) {
+				enviando = false;
+				if(data.res) {
+					userdata = data.datos;
+					localStorage["datos"] = userdata;
+					localStorage["codigo"] = codigo;
+					ventHome = "home1";
+					$('#home2').removeClass('activa');
+					app.ponerInfoUser(2);
+					app.ponerHome();
+				} else {
+					app.alerta("The code that you enter is invalid.", 'Access with code');
+				}
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				app.alerta("Can't connect to server. Try again later.", 'Access with code');
+			}
+		});
+	},
     ponerHome: function() {
 		$('.preapp').animate({
 			'top': '100vh'
@@ -305,33 +339,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var tempcode = $('#usercode').val();
 		if(tempcode!='') {
-			enviando = true;
-			var datos = {
-				'action':'checkcode',
-				'usercode': tempcode
-			}
-			$.ajax({
-				type: 'POST',
-				data: datos,
-				dataType: 'json',
-				url: apiURL,
-				success: function (data) {
-					enviando = false;
-					if(data.res) {
-						userdata = data.datos;
-						localStorage["datos"] = userdata;
-						ventHome = "home1";
-						$('#home2').removeClass('activa');
-						app.ponerInfoUser(2);
-						app.ponerHome();
-					} else {
-						app.alerta("The code that you enter is invalid.", 'Access with code');
-					}
-				},
-				error : function(xhr, ajaxOptions, thrownError) {
-					app.alerta("Can't connect to server. Try again later.", 'Access with code');
-				}
-			});
+			app.cargarcodigo(tempcode);
 		} else {
 			app.alerta('You must need to enter your code.', 'Access with code');
 		}

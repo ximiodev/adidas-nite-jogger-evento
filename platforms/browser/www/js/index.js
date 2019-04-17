@@ -194,7 +194,7 @@ var app = {
 				'	</div>'+
 				'	<div class="col-xs-12">'+
 				'		<div class="descturism">'+turi[i].descripcion+'</div>'+
-				'		<a href="'+turi[i].linkmap+'" target="_blank" class="btnMap">View on map</a>'+
+				'		<a href="'+turi[i].linkmap+'" rel="external" target="_system" class="btnMap">View on map</a>'+
 				'	</div>';
 		$('.turismocontInt').append(block);
 		$('#turismoInt').addClass('activa');

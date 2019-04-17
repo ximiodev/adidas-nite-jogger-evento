@@ -302,7 +302,6 @@ var app = {
 };
 
 $(document).ready(function() {
-	alert("HOLA");
 	app.initialize();
 	app.iniciar();
 	$('#btnSincodigo').click(function(e) {
@@ -490,9 +489,6 @@ $(document).ready(function() {
 	});
 });
 
-
-	app.initialize();
-	app.iniciar();
 function setFilePath() {
     if(detectAndroid()) {   
         data_path = "file:///android_asset/www/res/db/";

@@ -34,8 +34,6 @@ var app = {
 				$('.header img').click();
 			}
 		}, false);
-		localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
-		datos_eventos = localStorage["datos_eventos"];
 		var datos = {
 			'action':'getData'
 		}
@@ -50,12 +48,15 @@ var app = {
 				localStorage["datos_eventos"] = datos_eventos;
 				if(localStorage["codigo"]!=undefined) {
 					app.cargarcodigo(localStorage["codigo"]);
+					app.cargarDatos();
 				} else {
 					app.cargarDatos();
 				}
 			},
 			error : function(xhr, ajaxOptions, thrownError) {
 				$('.loading').remove();
+				localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
+				datos_eventos = localStorage["datos_eventos"];
 				enviando = false;
 				app.alerta('An error ocurred, try again latar, to update data.', 'Retriving data');
 			}

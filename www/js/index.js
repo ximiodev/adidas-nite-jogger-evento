@@ -257,6 +257,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('#home1').removeClass('activa');
 		$('.perfilcont').html('<div class="textwarn">You must have a code to view this section.</div>');
+		$('.poire').html('');
 		app.ponerInfoUser(1);
 		app.ponerHome();
 	});

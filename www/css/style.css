@@ -406,7 +406,7 @@ input#search {
 
 a.redInflu {
     font-family: 'AdihausDINRegular';
-    color: #FFF;
+    color: #f70c5b;
     text-align: left;
     font-size: 12px;
     display: block;
@@ -520,7 +520,6 @@ a.redInflu {
 }
 
 .descTuri {
-    font-family: 'AdihausDINRegular';
     font-size: 14px;
     line-height: 14px;
     text-align: left;

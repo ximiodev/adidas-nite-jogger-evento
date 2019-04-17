@@ -70,10 +70,10 @@ var app = {
 		$('.influcont').html('');
 		for(var i=0;i<cant;i++) {
 			block = ''+
-					'	<div class="col-xs-6 boxInfS">'+
-					'		<div class="fotoInflu" onclick="app.ponerInfoInf('+i+')" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
-					'		<a href="https://www.instagram.com/'+influ[i].instagram+'" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
-					'		<a href="https://www.twitter.com/'+influ[i].twitter+'" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
+					'	<div class="col-xs-6 boxInfS" onclick="app.ponerInfoInf('+i+')">'+
+					'		<div class="fotoInflu" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
+					'		<div class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</div>'+
+					'		<div class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</div>'+
 					'	</div>';
 			$('.influcont').append(block);
 		}
@@ -170,7 +170,6 @@ var app = {
 				'			<a href="https://www.instagram.com/'+influ[i].instagram+'" id="instagram" rel="external" target="_system" class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</a>'+
 				'			<a href="https://www.twitter.com/'+influ[i].twitter+'" id="twitter" rel="external" target="_system" class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</a>'+
 				'			<div class="bioInflu">'+influ[i].bio+'</div>'+
-				'			<img src="'+influ[i].baseurl+influ[i].imagen_botom+'" class="imgInflu">'+
 				'		</div>';
 		$('.influcontInt').append(block);
 		$('#influencersInt').addClass('activa');

@@ -252,9 +252,16 @@ button.botonfoo {
     border: 0;
     background: none;
 }
+/*
+	
+.4botones button.botonfoo {
+    width: 25%;
+}
+*/
 
 .botonfoo img {
     width: 100%;
+    max-width: 80px;
 }
 
 .fondohome {
@@ -393,7 +400,7 @@ input#search {
 
 .boxInfS {
 	overflow: hidden;
-	height: 160px;
+	height: 120px;
 }
 
 .redInflu {
@@ -716,4 +723,82 @@ div#subremember2 {
     float: left;
     padding-left: 10px;
     width: 49%;
+}
+
+a.btnTel img {
+	height: 100%;
+}
+
+a.btnTel {
+    float: left;
+    display: block;
+    height: 160%;
+    margin: -5px 0 0;
+}
+
+
+
+@media only screen 
+and (min-device-width : 768px)  {
+	.header {
+		height: 60px;
+	}
+	.header img{
+		height: 100%;
+	}
+	.ventana {
+		height: calc(100vh - 105px);
+		padding-top: 60px;
+    }
+    .footer {
+		height: 105px;
+	}
+	.titHome {
+		font-size: 36px;
+		line-height: 38px;
+	}
+	.titHome2 {
+		font-size: 32px;
+		line-height: 34px;
+	}
+	.fotoInflu {
+		height: 180px;
+    }
+    .boxInfS {
+		height: 230px;
+	}
+	.redInflu {
+		font-size: 16px;
+	}
+	.nombreInflu {
+		font-size: 24px;
+	}
+	a.redInflu {
+		font-size: 16px;
+	}
+	.horaeve,.tituloeve, .lugareve, .btnVermas {
+		font-size: 20px;
+	}
+	.boxTurS {
+		height: 280px;
+	}
+	.tituTuri {
+		font-size: 28px;
+		line-height: 30px;
+	}
+	.descTuri {
+		font-size: 18px;
+		line-height: 20px;
+	}
+	.descturism {
+		font-size: 20px;
+		line-height: 22px;
+	}
+	
+	a.btnTel {
+		float: left;
+		display: block;
+		height: 140%;
+		margin: -5px 0;
+	}
 }

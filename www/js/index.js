@@ -1,7 +1,7 @@
 var isonline = false;
 var isOffline = true;
 var enviando = false;
-secTipo = 0;
+var secTipo = 0;
 var userdata = '';
 var apiURL = "http://newcyclelabs.com.ar/addidasnitejogger/appConnector.php";
 var datos_eventos;
@@ -17,23 +17,6 @@ var app = {
     onDeviceReady: function() {
     },
     iniciar: function() {
-		document.addEventListener("backbutton", function(e){
-			if(secTipo==0) {
-				//navigator.app.exitApp();
-			}
-			if(secTipo==6) {
-				$('#btnTurismo').click();
-			}
-			if(secTipo==7) {
-				$('#btnInfluencers').click();
-			}
-			if(secTipo==8) {
-				$('#btnEventos').click();
-			}
-			if(secTipo==1 || secTipo==2 || secTipo==3 || secTipo==4 || secTipo==5 ) {
-				$('.header img').click();
-			}
-		}, false);
 		var datos = {
 			'action':'getData'
 		}
@@ -199,12 +182,16 @@ var app = {
 		$('.turismocontInt').append(block);
 		$('#turismoInt').addClass('activa');
 	},
-    ponerInfoUser: function(tipo=1) {
+    ponerInfoUser: function(tipo) {
 		if(tipo==1) {
 			$('#homenombeve').html(datos_eventos.infohome.homenombeve);
 			$('#homenombeve2').html(datos_eventos.infohome.homenombeve2);
 		} else {
-			var foto = (userdata.foto!="")?userdata.baseurl+userdata.foto:'images/userimg.jpg'
+			var foto = (userdata.foto!="")?userdata.baseurl+userdata.foto:'images/userimg.jpg';
+			if(userdata.telcontacto!=undefined) {
+				$('.btnTel').remove();
+				$('.header').append('<a href="https://wa.me/'+userdata.telcontacto+'" rel="external" target="_system" class="btnTel"><img src="images/icontel.png"></a>');
+			}
 			$('.marcofoto').attr('src', foto);
 			$('#nombreperfil').html(userdata.nombre);
 			$('#subremember').html(userdata.subremember);
@@ -286,10 +273,10 @@ var app = {
 			$('.preapp').remove();
 		});
     },
-    alerta: function(cuerpo,title='Alerta',buttonsfooter=''){
+    alerta: function(cuerpo,title,buttonsfooter){
 		var acciones = '';
 		$('#alerta .modal-footer').hide();
-		if(buttonsfooter!='') {
+		if(buttonsfooter!=undefined) {
 			$('#alerta .modal-footer').show();
 			acciones = buttonsfooter;
 		}
@@ -307,6 +294,8 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('#home1').removeClass('activa');
 		$('.perfilcont').html('<div class="textwarn">You must have a code to view this section.</div>');
+		$('.footer').addClass('4botones');
+		$('#btnPerfil').hide();
 		$('.poire').html('');
 		app.ponerInfoUser(1);
 		app.ponerHome();
@@ -486,6 +475,24 @@ $(document).ready(function() {
 		$('#perfil').addClass('activa');
 		secTipo = 5;
 	});
+	
+		document.addEventListener("backbutton", function(e){
+			if(secTipo==1 || secTipo==2 || secTipo==3 || secTipo==4 || secTipo==5 ) {
+				$('.header img').click();
+			}
+			if(secTipo==0) {
+				//navigator.app.exitApp();
+			}
+			if(secTipo==6) {
+				$('#btnTurismo').click();
+			}
+			if(secTipo==7) {
+				$('#btnInfluencers').click();
+			}
+			if(secTipo==8) {
+				$('#btnEventos').click();
+			}
+		}, false);
 });
 
 function setFilePath() {

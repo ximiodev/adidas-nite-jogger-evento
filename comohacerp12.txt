@@ -1,0 +1,7 @@
+cd c:\OpenSSL-Win64\bin
+openssl genrsa -out C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\keyname.key 2048
+openssl req -new -key C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\keyname.key -out C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\CertificateSigningRequest.certSigningRequest -subj "/emailAddress=falvarino@ximiodev.com, CN=Francisco Alvarino, C=AR"
+openssl x509 -in C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\ios_distribution.cer -inform DER -out C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\prod_identity.pem -outform PEM
+openssl pkcs12 -export -inkey C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\keyname.key -in C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\prod_identity.pem -out C:\Users\MARIEYFRAN\ximio\appLuiggi\app_09-2018\iphone_prod.p12
+
+

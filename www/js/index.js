@@ -188,7 +188,7 @@ var app = {
 			$('#homenombeve2').html(datos_eventos.infohome.homenombeve2);
 		} else {
 			var foto = (userdata.foto!="")?userdata.baseurl+userdata.foto:'images/userimg.jpg';
-			if(userdata.telcontacto!=undefined) {
+			if(userdata.telcontacto!=undefined && userdata.telcontacto!='' && userdata.telcontacto!=null) {
 				$('.btnTel').remove();
 				$('.header').append('<a href="https://wa.me/'+userdata.telcontacto+'" rel="external" target="_system" class="btnTel"><img src="images/icontel.png"></a>');
 			}

@@ -364,6 +364,7 @@ input#search {
 
 .searchbox img {
     width: auto;
+	max-width: 30px;
     max-height: 30px;
     height: 100%;
     float: right;

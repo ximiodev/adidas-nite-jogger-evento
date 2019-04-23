@@ -17,9 +17,7 @@
     <preference name="StatusBarStyle" value="blacktranslucent" />
 	<icon src="www/res/icon/ios/icon-small@2x.png" />
     <platform name="android">
-		<plugin name="cordova-plugin-console" source="npm" />
 		<plugin name="cordova-plugin-device" source="npm" />
-		<plugin name="cordova-plugin-dialogs" source="npm" />
 		<plugin name="cordova-plugin-statusbar" source="npm" />
 		<plugin name="cordova-plugin-whitelist" source="npm" />
 		<preference name="SplashMaintainAspectRatio" value="true"/>

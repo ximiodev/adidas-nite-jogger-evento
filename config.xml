@@ -17,13 +17,11 @@
     <preference name="StatusBarStyle" value="blacktranslucent" />
 	<icon src="www/res/icon/ios/icon-small@2x.png" />
     <platform name="android">
-		<plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
-		<plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
-		<plugin name="cordova-plugin-device-orientation" source="npm" spec="~1.0.2" />
-		<plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
-		<plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
+		<plugin name="cordova-plugin-console" source="npm" />
+		<plugin name="cordova-plugin-device" source="npm" />
+		<plugin name="cordova-plugin-dialogs" source="npm" />
+		<plugin name="cordova-plugin-statusbar" source="npm" />
 		<plugin name="cordova-plugin-whitelist" source="npm" />
-		<plugin name="cordova-plugin-keyboard" source="npm" />
 		<preference name="SplashMaintainAspectRatio" value="true"/>
 		<preference name="SplashShowOnlyFirstTime" value="true"/>
 		<icon density="ldpi" src="res/icon/android/ldpi.png"/>

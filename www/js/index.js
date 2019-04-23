@@ -380,7 +380,7 @@ $(document).ready(function() {
 			$('#search').focusout();
 			$('#search').blur();
 			+$(':focus').blur();
-			Keyboard.hide();
+			//~ Keyboard.hide();
 		}
 	});
 	

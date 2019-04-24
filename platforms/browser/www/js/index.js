@@ -380,7 +380,7 @@ $(document).ready(function() {
 			$('#search').focusout();
 			$('#search').blur();
 			+$(':focus').blur();
-			Keyboard.hide();
+			//~ Keyboard.hide();
 		}
 	});
 	
@@ -398,12 +398,16 @@ $(document).ready(function() {
 	
 	$('.esdia1').click(function(e) {
 		e.preventDefault();
+		$('.btnDia').removeClass('activo');
+		$('.esdia1').addClass('activo');
 		$('.eventcont1').removeClass('hidden');
 		$('.eventcont0').addClass('hidden');
 	});
 	
 	$('.esdia0').click(function(e) {
 		e.preventDefault();
+		$('.btnDia').removeClass('activo');
+		$('.esdia0').addClass('activo');
 		$('.eventcont0').removeClass('hidden');
 		$('.eventcont1').addClass('hidden');
 	});

@@ -122,6 +122,10 @@ body {
 	left: 0;
 }
 
+.header img {
+    height: 100%;
+}
+
 .preapp .ventana {
 	height: 100vh;
 }
@@ -537,8 +541,10 @@ a.redInflu {
 }
 
 .boxTurS {
-	overflow: hidden;
-	height: 160px;
+    overflow: hidden;
+    height: 180px;
+    background: no-repeat center center;
+    background-size: cover;
 }
 
 .boxTurS table, .boxTurS tr {

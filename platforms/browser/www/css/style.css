@@ -762,6 +762,7 @@ a.btnTel {
 .turismocont.row {
     height: 100%;
     margin: 0;
+    overflow: hidden;
 }
 
 .turcontfin {

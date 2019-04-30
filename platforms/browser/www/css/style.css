@@ -273,6 +273,11 @@ button.botonfoo {
     background-size: cover;
 }
 
+#turismo {
+    background: #000 no-repeat center center url(../images/splash_turismo.jpg);
+    background-size: contain;
+}
+
 .titHome {
     font-family: 'AdihausDINRegular';
     font-size: 22px;
@@ -470,27 +475,32 @@ a.redInflu {
 
 .tituloeve {
     font-family: 'AdihausDINBold';
-    font-size: 16px;
+    font-size: 12px;
     margin-right: -30px;
     text-align: left;
 }
 
 .lugareve {
     font-family: 'AdihausDINRegular';
-    font-size: 16px;
+    font-size: 12px;
     margin-right: -30px;
     text-align: left;
 }
 
 .btnVermas {
     font-family: 'AdihausDINRegular';
-    font-size: 14px;
+    font-size: 11px;
     margin-right: -30px;
     text-align: right;
 }
 
 .sepadadorrig {
     border-left: 1px solid #FFF;
+}
+
+.coneccion_i, .coneccion_v {
+    color: #FFF;
+    font-size: 11px;
 }
 
 .tituloEvento {
@@ -743,6 +753,262 @@ a.btnTel {
     margin: -5px 0 0;
 }
 
+#turismo .boxContInt {
+    height: 100%;
+	margin: 0 auto;
+    width: 100%;
+}
+
+.turismocont.row {
+    height: 100%;
+    margin: 0;
+}
+
+.turcontfin {
+    height: 100%;
+    background: #000;
+	position: relative;
+}
+
+.venetanamapa {
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.mapa_popo {
+    height: calc(100% - 80px);
+    background: url(../images/mapa_home.jpg) top center no-repeat;
+    background-size: cover;
+}
+
+.contebotomap {
+    height: calc(100% - 80px);
+}
+
+.btnMapaRub {
+    height: 33%;
+    background: top center no-repeat;
+    background-size: cover;
+    width: 100%;
+    border: 0;
+    display: block;
+    position: relative;
+}
+
+.btnMapaRub.polanco {
+    background-image: url(../images/btnPolanco.jpg);
+    height: 34%;
+}
+
+.btnMapaRub.centro {
+    background-image: url(../images/btnCentro.jpg);
+}
+
+.btnMapaRub.reforma {
+    background-image: url(../images/btnReforma.jpg);
+}
+
+.botomventamapa {
+    font-family: 'AdihausDINBold';
+    color: #FFF;
+    height: 80px;
+    padding: 15px;
+    font-size: 20px;
+	position: relative;
+	text-align: left;
+}
+
+button.btnMapaRu {
+    border: 0;
+    background: #000;
+    color: #FFF;
+    padding: 10px;
+    position: absolute;
+}
+
+button.btnMapaRu.polanco {
+    top: 20%;
+    left: 5%;
+}
+
+button.btnMapaRu.reforma {
+    top: 43%;
+    left: 33%;
+}
+
+button.btnMapaRu.centro {
+    top: 12%;
+    right: 5%;
+}
+
+button.btnMapaBo img {
+	height: 100%;
+}
+
+button.btnMapaBo {
+    position: absolute;
+    border: 0;
+    background: none;
+    display: block;
+    height: 45px;
+    right: 20px;
+    top: 17px;
+}
+
+.bottomsecciontur {
+    min-height: 130px;
+    height: auto;
+    background: #000;
+    padding-left: 125px;
+    padding-bottom: 10px;
+}
+
+.seccioncategoria {
+    height: 100px;
+    background: #000;
+    padding: 10px;
+}
+
+.seccionmapa {
+	background: #edebee top center no-repeat;
+    background-size: contain;
+    height: calc(100% - 230px);
+	position: relative;
+}
+
+td.logo_mapa img {
+    width: 40px;
+}
+
+td.logo_mapa {
+    padding: 0;
+    width: 80px;
+}
+
+td.titCateTur {
+    font-family: 'AdihausDINBold';
+    font-size: 20px;
+    text-align: left;
+    color: #FFF;
+}
+
+td.txtCateTur {
+    font-size: 8px;
+    text-align: left;
+    color: #FFF;
+    font-family: 'AdihausDINRegular';
+}
+
+.imgTurSec {
+    position: absolute;
+    bottom: -105px;
+    left: 15px;
+    width: 100px;
+    height: 150px;
+    background: center center no-repeat;
+    background-size: cover;
+}
+
+.btnLinkMapa img {
+    width: 100%;
+}
+
+a.btnLinkMapa {
+    border: 0;
+    padding: 0;
+    background: none;
+    position: absolute;
+    bottom: 5px;
+    left: 125px;
+    width: 30px;
+    height: 30px;
+}
+
+.btnTurAnte img {
+    width: 100%;
+}
+
+button.btnTurAnte {
+    border: 0;
+    padding: 0;
+    background: none;
+    position: absolute;
+    bottom: 5px;
+    right: 85px;
+    width: 30px;
+    height: 30px;
+}
+
+.btnTurHome img {
+    width: 100%;
+}
+
+button.btnTurHome {
+    border: 0;
+    padding: 0;
+    background: none;
+    position: absolute;
+    bottom: 5px;
+    right: 50px;
+    width: 30px;
+    height: 30px;
+}
+
+.btnTurSig img {
+    width: 100%;
+}
+
+button.btnTurSig {
+    border: 0;
+    padding: 0;
+    background: none;
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+img.numturim {
+    width: 15px;
+}
+
+td.numcont {
+	vertical-align: middle;
+}
+
+td.titTur {
+    font-family: 'AdihausDINBold';
+    font-size: 18px;
+    color: #FFF;
+    padding: 15px 15px 5px;
+    text-align: left;
+}
+
+.bottomsecciontur table {
+    width: 100%;
+}
+
+td.textTur {
+    font-size: 11px;
+    text-align: left;
+    color: #FFF;
+    padding: 0 15px;
+    font-family: 'AdihausDINRegular';
+}
+
+button.itemMapa {
+    position: absolute;
+    background: transparent;
+    border: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
 
 
 @media only screen 

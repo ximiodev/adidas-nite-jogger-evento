@@ -2,6 +2,10 @@ var isonline = false;
 var isOffline = true;
 var enviando = false;
 var secTipo = 0;
+var itemtur = 0;
+var arrTurr = new Array();
+var turi_cate;
+var turi_cate_c;
 var userdata = '';
 var apiURL = "http://newcyclelabs.com.ar/addidasnitejogger/appConnector.php";
 var datos_eventos;
@@ -41,7 +45,7 @@ var app = {
 				localStorage["datos_eventos"] = loadJSON(data_path + "datos/datos.json");
 				datos_eventos = localStorage["datos_eventos"];
 				enviando = false;
-				app.alerta('An error ocurred, try again latar, to update data.', 'Retriving data');
+				app.alerta('An error ocurred, try again later, to update data.', 'Retriving data');
 			}
 		});
 	},
@@ -57,6 +61,7 @@ var app = {
 					'		<div class="fotoInflu" style="background-image: url('+influ[i].baseurl+influ[i].imagen_header+');"></div>'+
 					'		<div class="redInflu">'+((influ[i].instagram!='')?'@':'')+influ[i].instagram+'</div>'+
 					'		<div class="redInflu">'+((influ[i].twitter!='')?'@':'')+influ[i].twitter+'</div>'+
+					'		<div class="pais">'+((influ[i].pais!='')?'@':'')+influ[i].pais+'</div>'+
 					'	</div>';
 			$('.influcont').append(block);
 		}
@@ -77,7 +82,7 @@ var app = {
 					'	<div class="col-xs-6 sepadadorrig">'+
 					'		<div class="tituloeve">'+event[i].titulo+'</div>'+
 					'		<div class="lugareve">'+event[i].lugar+'</div>'+
-					'		<div class="btnVermas" onclick="app.ponerInfoEve('+event[i].dia+','+i+')">READ MORE &gt;</div>'+
+					'		<div class="btnVermas" onclick="app.ponerInfoEve('+event[i].dia+','+i+')">MORE &gt;</div>'+
 					'	</div>'+
 					'</div>';
 			$('.eventcont'+event[i].dia+'').append(block);
@@ -88,22 +93,22 @@ var app = {
 		var cant = datos_eventos["turismo"].length;
 		var turi = datos_eventos["turismo"];
 		var block = '';
-		$('.turismocont').html('');
-		for(var i=0;i<cant;i++) {
-			block = ''+
-					'	<div class="col-xs-12 boxTurS" onclick="app.ponerInfoTur('+i+')" style="background-image: url('+turi[i].baseurl+turi[i].imagen_header+');">'+
-					'		<div class="fondoscTur"></div>'+
-					'		<table class="turfond">'+
-					'		<tr>'+
-					'		<td>'+
-					'		<div class="tituTuri">'+turi[i].nombre_lugar+'</div>'+
-					'		<div class="descTuri">'+turi[i].descripcion_breve+'</div>'+
-					'		</td>'+
-					'		</tr>'+
-					'		</table>'+
-					'	</div>';
-			$('.turismocont').append(block);
-		}
+		//~ $('.turismocont').html('');
+		//~ for(var i=0;i<cant;i++) {
+			//~ block = ''+
+					//~ '	<div class="col-xs-12 boxTurS" onclick="app.ponerInfoTur('+i+')" style="background-image: url('+turi[i].baseurl+turi[i].imagen_header+');">'+
+					//~ '		<div class="fondoscTur"></div>'+
+					//~ '		<table class="turfond">'+
+					//~ '		<tr>'+
+					//~ '		<td>'+
+					//~ '		<div class="tituTuri">'+turi[i].nombre_lugar+'</div>'+
+					//~ '		<div class="descTuri">'+turi[i].descripcion_breve+'</div>'+
+					//~ '		</td>'+
+					//~ '		</tr>'+
+					//~ '		</table>'+
+					//~ '	</div>';
+			//~ $('.turismocont').append(block);
+		//~ }
 		
 		
 		//guidelines
@@ -162,24 +167,24 @@ var app = {
 		$('.ventana').removeClass('activa');
 		var turi = datos_eventos["turismo"];
 		var block = '';
-		$('.turismocontInt').html('');
-		var i = turid;
-		block = ''+
-				'	<div class="col-xs-12 boxTurS" style="background-image: url('+turi[i].baseurl+turi[i].imagen_header+');">'+
-				'		<table>'+
-				'		<tr>'+
-				'		<td>'+
-				'		<div class="tituTuri">'+turi[i].nombre_lugar+'</div>'+
-				'		<div class="descTuri">'+turi[i].descripcion_breve+'</div>'+
-				'		</td>'+
-				'		</tr>'+
-				'		</table>'+
-				'	</div>'+
-				'	<div class="col-xs-12">'+
-				'		<div class="descturism">'+turi[i].descripcion+'</div>'+
-				'		<a href="'+turi[i].linkmap+'" rel="external" target="_system" class="btnMap">View on map</a>'+
-				'	</div>';
-		$('.turismocontInt').append(block);
+		//~ $('.turismocontInt').html('');
+		//~ var i = turid;
+		//~ block = ''+
+				//~ '	<div class="col-xs-12 boxTurS" style="background-image: url('+turi[i].baseurl+turi[i].imagen_header+');">'+
+				//~ '		<table>'+
+				//~ '		<tr>'+
+				//~ '		<td>'+
+				//~ '		<div class="tituTuri">'+turi[i].nombre_lugar+'</div>'+
+				//~ '		<div class="descTuri">'+turi[i].descripcion_breve+'</div>'+
+				//~ '		</td>'+
+				//~ '		</tr>'+
+				//~ '		</table>'+
+				//~ '	</div>'+
+				//~ '	<div class="col-xs-12">'+
+				//~ '		<div class="descturism">'+turi[i].descripcion+'</div>'+
+				//~ '		<a href="'+turi[i].linkmap+'" rel="external" target="_system" class="btnMap">View on map</a>'+
+				//~ '	</div>';
+		//~ $('.turismocontInt').append(block);
 		$('#turismoInt').addClass('activa');
 	},
     ponerInfoUser: function(tipo) {
@@ -208,6 +213,9 @@ var app = {
 			$('#vueloida .diasalida').html(userdata.fecha_de_salida_ida);
 			//~ $('#vueloida .diallegada').html(userdata.fecha_de_llegada_ida);
 			$('#vueloida .codigoreserva').html(userdata.vuelo_salida_ida);
+			if(userdata.vuelo_escala_ida!='') {
+				$('#vueloida .coneccion_i').html('Flight scale: '+userdata.vuelo_escala_ida);
+			}
 			$('#vueloida .asientoempresa').html(userdata.empresa_salida_ida+' | '+userdata.asiento_ida);
 			
 			$('#vuelovuelta .horasalida').html(userdata.hora_de_salida_vuelta);
@@ -215,6 +223,9 @@ var app = {
 			$('#vuelovuelta .diasalida').html(userdata.fecha_de_regreso_vuelta);
 			//~ $('#vuelovuelta .diallegada').html(userdata.fecha_de_llegada_vuelta);
 			$('#vuelovuelta .codigoreserva').html(userdata.vuelo_vuelta);
+			if(userdata.vuelo_escala_vuelta!='') {
+				$('#vuelovuelta .coneccion_v').html(userdata.vuelo_escala_vuelta);
+			}
 			$('#vuelovuelta .asientoempresa').html(userdata.empresa_vuelta+' | '+userdata.asiento_vuelta);
 			
 			
@@ -412,6 +423,55 @@ $(document).ready(function() {
 		$('.eventcont1').addClass('hidden');
 	});
 	
+	$('button.btnTurHome').click(function(e) {
+		e.preventDefault();
+		$('#detallelugar').animate({'left':'100%'}, 400);
+	});
+	
+	$('button.btnTurAnte').click(function(e) {
+		e.preventDefault();
+		if(itemtur>0) {
+			itemtur--;
+			ponerItemTur(itemtur);
+		}
+	});
+	
+	$('button.btnTurSig').click(function(e) {
+		e.preventDefault();
+		if(itemtur<(arrTurr.length-1)) {
+			itemtur++;
+			ponerItemTur(itemtur);
+		}
+	});
+	
+	$('button.btnMapaRu, button.btnMapaRub').click(function(e) {
+		e.preventDefault();
+		$('#detallelugar').animate({'left':'0'}, 400);
+		var cate = $(this).data('cate');
+		$('.itemMapa').hide();
+		$('.itemMapa.cate'+cate).show();
+		ponerTuri(cate);
+	});
+	
+	$('button.itemMapa').click(function(e) {
+		e.preventDefault();
+		var itemca = $(this).data('itemcate');
+		itemtur = itemca;
+		ponerItemTur();
+	});
+	
+	$('button.btnMapaBo').click(function(e) {
+		e.preventDefault();
+		var quien = $(this).data('cual');
+		if(quien=='#selectorMapa') {
+			$('#selectorMapa').animate({'left':'0'}, 400);
+			$('#selectorLista').animate({'left':'100%'}, 400);
+		} else {
+			$('#selectorLista').animate({'left':'0'}, 400);
+			$('#selectorMapa').animate({'left':'-100%'}, 400);
+		}
+	});
+	
 	
 	//menu
 	
@@ -451,6 +511,8 @@ $(document).ready(function() {
 		$('#btnTurismo img').attr('src', 'images/turismo_over.png');
 		$('.ventana').removeClass('activa');
 		$('#turismo').addClass('activa');
+		$('#turismo .boxContInt').fadeOut(1).delay(600).fadeIn(400);
+		
 		secTipo = 3;
 	});
 	
@@ -520,4 +582,41 @@ function loadJSON(url) {
 		async : false,
 		dataType : 'json'
 	}).responseText;
+}
+
+function ponerTuri(cate) {
+	var cant = datos_eventos["turismo"].length;
+	var turi = datos_eventos["turismo"];
+	turi_cate = datos_eventos["turismo_cate"];
+	turi_cate_c = datos_eventos["turismo_cate"].length;
+	var datos_cate;
+	arrTurr = new Array();
+	for(var i=0;i<cant;i++) {
+		if(turi[i].categoria_mapa==cate) {
+			arrTurr.push(turi[i]);
+		}
+	}
+	for(var i=0;i<turi_cate_c;i++) {
+		if(turi_cate[i].ID==cate) {
+			datos_cate = turi_cate[i];
+		}
+	}
+	$('.titCateTur').html(datos_cate.nombre);
+	$('.txtCateTur').html(datos_cate.descripcion);
+	$('.seccionmapa').css({'background-image':'url(images/mapa_'+cate+'.jpg)'});
+	itemtur = 0;
+	ponerItemTur();
+}
+
+function ponerItemTur() {
+	$('.titTur').html(arrTurr[itemtur].nombre_lugar);
+	$('.textTur').html(arrTurr[itemtur].descripcion);
+	if(arrTurr[itemtur].linkmap!="") {
+		$('.btnLinkMapa').show();
+		$('.btnLinkMapa').attr('href', arrTurr[itemtur].linkmap);
+	} else {
+		$('.btnLinkMapa').hide();
+	}
+	$('.imgTurSec').css({'background-image':'url('+arrTurr[itemtur].baseurl+arrTurr[itemtur].imagen_header+')'});
+	$('.numturim').attr('src', 'images/tit_icon_'+(itemtur+1)+'.jpg');
 }

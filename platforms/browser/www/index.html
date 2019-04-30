@@ -13,7 +13,7 @@
 	<!--
 		<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:; style-src * 'self' 'unsafe-inline'; media-src *; img-src * 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval';connect-src * 'self'; font-src * 'self' https://fonts.gstatic.com data:;">
 	-->
-		<link rel="shortcut icon" href="img/logo.png"/>
+		<link rel="shortcut icon" href="images/logo.png"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<title>Adidas Nite Joger</title>
@@ -25,12 +25,14 @@
 			<div class="ventana activa">
 				<div class="boxlogin">
 					<img src="images/logo.png">
-					<div class="titulolog">ENTER YOUR CODE</div>
+					<div class="titulolog">ENTER YOUR FULL NAME</div>
 					<input type="text" id="usercode" class="inputgen al_100" />
 					<button class="btnBlanco" id="btnIngresar">ENTER</button>
+<!--
 					<a href="#" class="btnReset">RESEND CODE &gt;</a>
+-->
 				</div>
-				<button class="btnBlancoLog" id="btnSincodigo">DO NOT HAVE A CODE &gt;</button>
+				<button class="btnBlancoLog" id="btnSincodigo">CONTINUE WITHOUT LOGIN &gt;</button>
 			</div>
 		</div>
 		<div class="app fondohome">
@@ -100,6 +102,86 @@
 			<div class="ventana " id="turismo">
 				<div class="boxContInt">
 					<div class="turismocont row">
+						<div class="turcontfin">
+							<div class="venetanamapa" id="selectorMapa">
+								<div class="mapa_popo">
+									<button class="btnMapaRu polanco" data-cate="1">RUTA POLANCO</button>
+									<button class="btnMapaRu centro" data-cate="2">RUTA CENTRO</button>
+									<button class="btnMapaRu reforma" data-cate="3">RUTA REFORMA</button>
+								</div>
+								<div class="botomventamapa">
+									MEXICO CITY<br>
+									OVERVIEW MAP
+									<button class="btnMapaBo" data-cual="#selectorLista"><img src="images/btn_menu_mapa_lista.jpg"></button>
+								</div>
+							</div>
+							<div class="venetanamapa" id="selectorLista" style="left: 100%;">
+								<div class="contebotomap">
+									<button class="btnMapaRub polanco" data-cate="1"></button>
+									<button class="btnMapaRub centro" data-cate="2"></button>
+									<button class="btnMapaRub reforma" data-cate="3"></button>
+								</div>
+								<div class="botomventamapa">
+									CHOOSE<br>
+									YOUR ROUTE
+									<button class="btnMapaBo" data-cual="#selectorMapa"><img src="images/btn_menu_mapa_mapa.jpg"></button>
+								</div>
+							</div>
+							<div class="venetanamapa" id="detallelugar" style="left: 100%;">
+								<div class="seccioncategoria">
+									<table>
+										<tr>
+											<td class="logo_mapa"><img src="images/logo_mapa.png"></td>
+											<td class="titCateTur">asdasdasd</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="txtCateTur">asdasdasdasd</td>
+										</tr>
+									</table>
+								</div>
+								<div class="seccionmapa" style="background-image: url(images/mapa_1.jpg);">
+									<div style="background-image: url(images/imagen1.jpg);" class="imgTurSec"></div>
+									<a href="" class="btnLinkMapa" rel="external" target="_system" ><img src="images/icono_linkmapa.png"></a>
+									<button class="btnTurAnte"><img src="images/icono_anterior.jpg"></button>
+									<button class="btnTurHome"><img src="images/icono_logo_home.png"></button>
+									<button class="btnTurSig"><img src="images/icono_siguiente.png"></button>
+									<button class="itemMapa cate3" style="top: 11%;right: 25%;" data-itemcate="0"></button>
+									<button class="itemMapa cate3" style="top: 20%;left: 27%;" data-itemcate="1"></button>
+									<button class="itemMapa cate3" style="top: 15%;left: 41%;" data-itemcate="2"></button>
+									<button class="itemMapa cate3" style="top: 20%;left: 51%;" data-itemcate="3"></button>
+									<button class="itemMapa cate3" style="top: 22%;left: 46%;" data-itemcate="4"></button>
+									<button class="itemMapa cate3" style="top: 74%;right: 47%;" data-itemcate="5"></button>
+									
+									<button class="itemMapa cate1" style="top: 42%;left: 45%;" data-itemcate="0"></button>
+									<button class="itemMapa cate1" style="top: 25%;left: 23%;" data-itemcate="1"></button>
+									<button class="itemMapa cate1" style="top: 29%;left: 27%;" data-itemcate="2"></button>
+									<button class="itemMapa cate1" style="top: 44%;left: 78%;" data-itemcate="3"></button>
+									<button class="itemMapa cate1" style="top: 57%;right: 25%;" data-itemcate="4"></button>
+									
+									<button class="itemMapa cate2" style="top: 37%;left: 39%;" data-itemcate="0"></button>
+									<button class="itemMapa cate2" style="top: 39%;left: 61%;" data-itemcate="1"></button>
+									<button class="itemMapa cate2" style="top: 45%;left: 60%;" data-itemcate="2"></button>
+									<button class="itemMapa cate2" style="top: 40%;left: 67%;" data-itemcate="3"></button>
+									<button class="itemMapa cate2" style="top: 35%;left: 31%;" data-itemcate="4"></button>
+									<button class="itemMapa cate2" style="top: 51%;left: 20%;" data-itemcate="5"></button>
+									<button class="itemMapa cate2" style="top: 49%;left: 54%;" data-itemcate="6"></button>
+									<button class="itemMapa cate2" style="top: 50%;left: 61%;" data-itemcate="7"></button>
+								</div>
+								<div class="bottomsecciontur">
+									<table>
+										<tr>
+											<td class="numcont"><img src="images/tit_icon_1.jpg" class="numturim"></td>
+											<td class="titTur">asdasdasd</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="textTur">asdasdasdasd</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -141,6 +223,7 @@
 							</table>
 							<div class="codigoreserva"></div>
 							<div class="asientoempresa"></div>
+							<div class="coneccion_i"></div>
 						</div>
 						<div class="bloqueperfil" id="vuelovuelta">
 							<div class="titAvion">RETURN</div>
@@ -159,6 +242,7 @@
 							</table>
 							<div class="codigoreserva"></div>
 							<div class="asientoempresa"></div>
+							<div class="coneccion_v"></div>
 						</div>
 						<div class="bloqueperfil" id="hotel">
 							<div class="titHotel">HOTEL</div>
@@ -212,7 +296,9 @@
 				</div>
 			</div>
 		</div>
+<!--
 		<script type="text/javascript" src="cordova.js"></script>
+-->
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>

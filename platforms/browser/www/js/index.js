@@ -213,7 +213,7 @@ var app = {
 			$('#vueloida .diasalida').html(userdata.fecha_de_salida_ida);
 			//~ $('#vueloida .diallegada').html(userdata.fecha_de_llegada_ida);
 			$('#vueloida .codigoreserva').html(userdata.vuelo_salida_ida);
-			if(userdata.vuelo_escala_ida!='') {
+			if(userdata.vuelo_escala_ida!='' && userdata.vuelo_escala_ida!='NULL') {
 				$('#vueloida .coneccion_i').html('Flight scale: '+userdata.vuelo_escala_ida);
 			}
 			$('#vueloida .asientoempresa').html(userdata.empresa_salida_ida+' | '+userdata.asiento_ida);
@@ -223,8 +223,8 @@ var app = {
 			$('#vuelovuelta .diasalida').html(userdata.fecha_de_regreso_vuelta);
 			//~ $('#vuelovuelta .diallegada').html(userdata.fecha_de_llegada_vuelta);
 			$('#vuelovuelta .codigoreserva').html(userdata.vuelo_vuelta);
-			if(userdata.vuelo_escala_vuelta!='') {
-				$('#vuelovuelta .coneccion_v').html(userdata.vuelo_escala_vuelta);
+			if(userdata.vuelo_escala_vuelta!='' && userdata.vuelo_escala_ida!='NULL') {
+				$('#vuelovuelta .coneccion_v').html('Flight scale: '+userdata.vuelo_escala_vuelta);
 			}
 			$('#vuelovuelta .asientoempresa').html(userdata.empresa_vuelta+' | '+userdata.asiento_vuelta);
 			

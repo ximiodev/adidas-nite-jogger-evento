@@ -124,6 +124,7 @@ body {
 
 .header img {
     height: 100%;
+    max-width: 180px;
 }
 
 .preapp .ventana {
@@ -1019,6 +1020,7 @@ and (min-device-width : 768px)  {
 	}
 	.header img{
 		height: 100%;
+		max-width: 270px;
 	}
 	.ventana {
 		height: calc(100vh - 105px);
